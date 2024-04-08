@@ -1,13 +1,20 @@
-import requests
+from flask import Flask, render_template, request
 
-api_client = requests.Session()
+app = Flask(__name__)
 
-response = api_client.post(
-    f"/v1/installments/{{installment.external_id}}/postpone",
-    json={"postpone_until": {"postpone_until": "postpone_until.strftime(YYYY_MM_DD_FORMAT)"}},
-)
-#
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-print(response.status_code)
-print(response.json())
+@app.route('/postpone_installment', methods=['POST'])
+def postpone_installment():
+    external_id = request.form['external_id']
+    postpone_date = request.form['postpone_date']
+    
+    # Your API client code here
+    # This is where you would integrate the Python code provided earlier
+    
+    return f"Installment with external ID {external_id} postponed until {postpone_date}."
 
+if __name__ == '__main__':
+    app.run(debug=True)
