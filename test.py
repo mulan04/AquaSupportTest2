@@ -7,7 +7,6 @@ response = api_client.post(
     json={"postpone_until": {"postpone_until": "postpone_until.strftime(YYYY_MM_DD_FORMAT)"}},
 )
 
-#
 
 print(response.status_code)
 print(response.json())
